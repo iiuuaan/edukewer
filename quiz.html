@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Quiz</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="quiz">
+        <h2>Quiz: Introduction to Programming</h2>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. What is a variable?</p>
+                <label><input type="radio" name="q1" value="a"> A constant value</label>
+                <label><input type="radio" name="q1" value="b"> A storage for data</label>
+                <label><input type="radio" name="q1" value="c"> A type of function</label>
+            </div>
+
+            <div class="question">
+                <p>2. Which language is used for web development?</p>
+                <label><input type="radio" name="q2" value="a"> Python</label>
+                <label><input type="radio" name="q2" value="b"> JavaScript</label>
+                <label><input type="radio" name="q2" value="c"> C++</label>
+            </div>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
