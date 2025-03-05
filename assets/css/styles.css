@@ -37,6 +37,7 @@ nav a {
     border-radius: 5px;
 }
 
+/* login.html */
 .login-container {
     width: 300px;
     margin: 50px auto;
@@ -61,3 +62,34 @@ nav a {
     cursor: pointer;
 }
 
+/* .dashboard and course */
+.dashboard, .course-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-list {
+    display: flex;
+    gap: 20px;
+}
+
+.course-item {
+    background: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.course-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.course-content ul li {
+    background: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
