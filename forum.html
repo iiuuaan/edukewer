@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Forum Discussion</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="forum">
+        <h2>Course Discussion</h2>
+        <div class="messages">
+            <div class="message">
+                <strong>Alice:</strong> What is the best way to learn JavaScript?
+            </div>
+            <div class="message">
+                <strong>Instructor:</strong> Practice daily and build small projects.
+            </div>
+        </div>
+
+        <form id="forum-form">
+            <input type="text" id="message-input" placeholder="Type your message..." required>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
