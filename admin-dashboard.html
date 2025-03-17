@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/atmin.css">
+</head>
+<body class="admin-dashboard">
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="dashboard.html">User Dashboard</a>
+            <a id="logout">Logout</a>
+        </nav>
+    </header>
+    
+    <section class="admin-panel">
+        <h2>Manage Courses</h2>
+        <form id="course-form">
+            <input type="text" id="course-title" placeholder="Course Title" required>
+            <textarea id="course-description" placeholder="Course Description" required></textarea>
+            <button type="submit">Add Course</button>
+        </form>
+        
+        <h2>Existing Courses</h2>
+        <ul id="course-list"></ul>
+    </section>
+    
+    <section class="admin-users">
+        <h2>Manage Users</h2>
+        <ul id="user-list">
+            <!-- User list will be populated here -->
+        </ul>
+    </section>
+    
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>
