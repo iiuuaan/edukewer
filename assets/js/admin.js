@@ -87,3 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "index.html";
   });
 });
+
+if (localStorage.getItem("role") !== "admin") {
+    window.location.href = "login.html";
+}

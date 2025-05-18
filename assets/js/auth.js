@@ -6,23 +6,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
 
-        // Simulasi login (Bisa diganti dengan backend)
-        if (username === "admin" && password === "1234") {
-            localStorage.setItem("role", "admin");
-            window.location.href = "admin-dashboard.html"; // Redirect ke Admin Dashboard
-        } else if (username !== "" && password === "1234") { 
-            localStorage.setItem("role", "user");
-            window.location.href = "dashboard.html"; // Redirect ke User Dashboard
-        } else {
-            document.getElementById("error-message").style.display = "block";
-        }
+        // Kirim data ke PHP
+        fetch("login.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Simpan role ke localStorage
+                localStorage.setItem("role", data.role);
+
+                if (data.role === "admin") {
+                    window.location.href = "admin-dashboard.html";
+                } else {
+                    window.location.href = "dashboard.html";
+                }
+            } else {
+                errorMessage.style.display = "block";
+                errorMessage.textContent = data.message || "Invalid credentials!";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            errorMessage.style.display = "block";
+            errorMessage.textContent = "Terjadi kesalahan server.";
+        });
     });
 
-    // Cek jika sudah login, langsung redirect
-    if (localStorage.getItem("role") === "admin") {
+    // Auto-redirect jika sudah login
+    const role = localStorage.getItem("role");
+    if (role === "admin") {
         window.location.href = "admin-dashboard.html";
-    } else if (localStorage.getItem("role") === "user") {
+    } else if (role === "user") {
         window.location.href = "dashboard.html";
     }
 });
