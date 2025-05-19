@@ -11,31 +11,57 @@ body {
     line-height: 1.6;
 }
 
-header {
-    background: #007bff;
-    color: #fff;
+/* Header style seperti index.html */
+.dashboard-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
     padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-nav {
-    margin-top: 10px;
+/* Kiri header (judul Dashboard) */
+.header-left h1 {
+    margin: 0;
 }
 
-nav a {
+/* Kanan header (nav + user info) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+#nav-links a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+#nav-links a:hover {
     color: #ffd700;
+    text-decoration: underline;
 }
 
+.divider {
+    color: #ccc;
+    margin: 0 5px;
+}
+
+.user-info {
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Section dashboard */
 .dashboard {
     max-width: 800px;
     margin: 40px auto;
@@ -79,7 +105,8 @@ nav a:hover {
     font-size: 0.95em;
 }
 
-.course-item a, .enroll-btn {
+.course-item a,
+.enroll-btn {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 15px;
@@ -94,6 +121,7 @@ nav a:hover {
     transition: background 0.3s ease;
 }
 
-.course-item a:hover, .enroll-btn:hover {
+.course-item a:hover,
+.enroll-btn:hover {
     background: #0056b3;
 }

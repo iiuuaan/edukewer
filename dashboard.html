@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-    <header>
-        <h1>Dashboard</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">My Courses</a>
-            <a id="logout">Logout</a>
-        </nav>
+    <header class="dashboard-header">
+        <div class="header-left">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="header-right">
+            <nav id="nav-links">
+                <!-- Menu dinamis akan diisi lewat JavaScript -->
+            </nav>
+            <div class="user-info" id="user-info" style="display: none;">
+                <span id="username-text">Hallo, [username]!</span>
+            </div>
+        </div>
     </header>
 
     <section class="dashboard">
@@ -27,15 +32,61 @@
             <div class="course-item">
                 <h3>Course 2</h3>
                 <p>Web Development Basics</p>
-            <button class="enroll-btn" data-course="Course 2">Enroll</button>
+                <button class="enroll-btn" data-course="Course 2">Enroll</button>
             </div>
         </div>
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.getElementById("nav-links");
+            const userInfo = document.getElementById("user-info");
+            const usernameText = document.getElementById("username-text");
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/user.js"></script>
-    <script src="assets/js/logout.js"></script>
+            const role = localStorage.getItem("role");
+            const username = localStorage.getItem("username");
+
+            if (role === "admin") {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <span class="divider">|</span>
+                    <a href="admin-dashboard.html">Admin Dashboard</a>
+                    <span class="divider">|</span>
+                    <a href="#" id="logout">Logout</a>
+                `;
+            } else if (role === "user") {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <span class="divider">|</span>
+                    <a href="dashboard.html">My Courses</a>
+                    <span class="divider">|</span>
+                    <a href="#" id="logout">Logout</a>
+                `;
+            } else {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <span class="divider">|</span>
+                    <a href="login.html">Login</a>
+                    <span class="divider">|</span>
+                    <a href="register.html">Register</a>
+                `;
+            }
+
+            if (username) {
+                usernameText.textContent = `Hallo, ${username}!`;
+                userInfo.style.display = "block";
+            }
+
+            const logoutBtn = document.getElementById("logout");
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    localStorage.clear();
+                    window.location.href = "login.html";
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
