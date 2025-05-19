@@ -47,3 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "dashboard.html";
     }
 });
+
+if (data.success) {
+    localStorage.setItem("role", data.role);
+    localStorage.setItem("username", data.username); // Tambahan ini
+
+    if (data.role === "admin") {
+        window.location.href = "admin-dashboard.html";
+    } else {
+        window.location.href = "dashboard.html";
+    }
+}
+

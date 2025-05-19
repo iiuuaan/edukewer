@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Learning Platform</title>
     <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+        .user-info {
+            float: right;
+            margin-left: auto;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Welcome to E-Learning</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html">Login</a>
-            <a href="dashboard.html">Dashboard</a>
+        <nav id="nav-links">
+            <!-- Link dinamis akan diisi oleh JavaScript -->
         </nav>
+        <div class="user-info" id="user-info"></div>
     </header>
 
     <section class="courses">
@@ -31,5 +37,50 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.getElementById("nav-links");
+            const userInfo = document.getElementById("user-info");
+
+            const role = localStorage.getItem("role");
+            const username = localStorage.getItem("username");
+
+            if (role === "admin") {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <a href="admin-dashboard.html">Admin Dashboard</a>
+                    <a href="#" id="logout">Logout</a>
+                `;
+            } else if (role === "user") {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" id="logout">Logout</a>
+                `;
+            } else {
+                navLinks.innerHTML = `
+                    <a href="index.html">Home</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                `;
+            }
+
+            if (username) {
+                userInfo.textContent = `Welcome, ${username}`;
+            }
+
+            // Logout
+            const logoutBtn = document.getElementById("logout");
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem("role");
+                    localStorage.removeItem("username");
+                    window.location.href = "login.html";
+                });
+            }
+        });
+    </script>
 </body>
 </html>
