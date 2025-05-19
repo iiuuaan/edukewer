@@ -11,31 +11,69 @@ body {
     text-align: center;
 }
 
+/* Header Layout */
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
-    padding: 20px;
-    text-align: center;
+    padding: 15px 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
 }
 
-nav {
-    margin-top: 10px;
+header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: white;
 }
 
-nav a {
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Navigation */
+#nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#nav-links a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: 600;
+    position: relative;
+    padding: 0 10px;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
+#nav-links a:hover {
     color: #ffd700;
     text-decoration: underline;
 }
 
+#nav-links a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* User Info */
+.user-info {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Course Section */
 .courses {
     max-width: 800px;
     margin: 40px auto;

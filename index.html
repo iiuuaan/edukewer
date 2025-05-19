@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>E-Learning Platform</title>
-    <link rel="stylesheet" href="assets/css/index.css">
-    <style>
-        .user-info {
-            float: right;
-            margin-left: auto;
-            color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/index.css" />
 </head>
 <body>
     <header>
         <h1>Welcome to E-Learning</h1>
-        <nav id="nav-links">
-            <!-- Link dinamis akan diisi oleh JavaScript -->
-        </nav>
-        <div class="user-info" id="user-info"></div>
+
+        <div class="header-right">
+            <nav id="nav-links">
+                <!-- Link dinamis akan diisi oleh JavaScript -->
+            </nav>
+            <div class="user-info" id="user-info" style="display: none;">
+                <span id="username-text">Hallo, [username]!</span>
+            </div>
+        </div>
     </header>
 
     <section class="courses">
@@ -42,6 +40,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const navLinks = document.getElementById("nav-links");
             const userInfo = document.getElementById("user-info");
+            const usernameText = document.getElementById("username-text");
 
             const role = localStorage.getItem("role");
             const username = localStorage.getItem("username");
@@ -67,16 +66,15 @@
             }
 
             if (username) {
-                userInfo.textContent = `Welcome, ${username}`;
+                usernameText.textContent = `Hallo, ${username}!`;
+                userInfo.style.display = "block";
             }
 
-            // Logout
             const logoutBtn = document.getElementById("logout");
             if (logoutBtn) {
                 logoutBtn.addEventListener("click", function (e) {
                     e.preventDefault();
-                    localStorage.removeItem("role");
-                    localStorage.removeItem("username");
+                    localStorage.clear();
                     window.location.href = "login.html";
                 });
             }
