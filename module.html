@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module Details - Edukewer</title>
+    <link rel="stylesheet" href="assets/css/module.css">
+</head>
+<body>
+    <header>
+        <h1>Modul: Pengenalan</h1>
+        <nav>
+            <a href="course.html">Kembali ke Course</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <section class="module-content">
+        <h2>Materi</h2>
+        <p>Materi ini membahas pengenalan konsep dasar pemrograman.</p>
+
+        <!-- Video Opsional -->
+        <div class="video-container">
+            <h3>Video Pembelajaran</h3>
+            <video controls width="600">
+                <source src="assets/videos/module1.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video.
+            </video>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-section">
+            <h3>Kuis Modul</h3>
+            <a href="quiz.html?module_id=1" class="quiz-link">Kerjakan Kuis</a>
+        </div>
+
+        <!-- Forum -->
+        <div class="forum-section">
+            <h3>Forum Diskusi</h3>
+            <form action="post_forum.php" method="post">
+                <textarea name="message" rows="4" placeholder="Tulis pesan..."></textarea>
+                <input type="hidden" name="module_id" value="1">
+                <button type="submit">Kirim</button>
+            </form>
+
+            <div class="forum-messages">
+                <p><strong>Raja:</strong> Saya kurang paham tentang variabel, bisa bantu?</p>
+                <p><strong>Iwan:</strong> Variabel itu tempat menyimpan nilai. Seperti box yang diberi label!</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
