@@ -37,70 +37,61 @@ nav a:hover {
     color: #ffd700;
 }
 
+/* Wrapper kotak rapi */
 .course-content {
-    max-width: 700px;
+    max-width: 800px;
     margin: 40px auto;
     background: #fff;
-    padding: 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
     text-align: left;
 }
 
-.course-content h2 {
-    color: #007bff;
-    margin-bottom: 10px;
+/* Section Deskripsi dan Modul */
+.course-description, .modules {
+    margin-bottom: 30px;
 }
 
-.course-content p {
-    font-size: 1em;
-    color: #555;
+.course-description h2,
+.modules h2 {
+    color: #007bff;
     margin-bottom: 15px;
 }
 
-.course-content h3 {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #333;
+.course-description p {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 5px;
 }
 
-.course-content ul {
+/* Modul List */
+.module-list {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
 }
 
-.course-content ul li {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.module-list li {
+    background: #f0f4fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 12px;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.course-content ul li:hover {
-    transform: translateY(-3px);
+.module-list li:hover {
+    background: #e0ecff;
+    transform: translateY(-2px);
 }
 
-.course-content ul li img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.course-content ul li a {
-    text-decoration: none;
+.module-list li a {
     color: #007bff;
     font-weight: 600;
-    transition: color 0.3s ease;
-    flex-grow: 1;
+    text-decoration: none;
+    display: block;
 }
 
-.course-content ul li a:hover {
+.module-list li a:hover {
     color: #0056b3;
 }

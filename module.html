@@ -14,27 +14,26 @@
         </nav>
     </header>
 
-    <section class="module-content">
-        <h2>Materi</h2>
-        <p>Materi ini membahas pengenalan konsep dasar pemrograman.</p>
+    <main class="module-container">
+        <section class="module-content">
+            <h2>Materi</h2>
+            <p>Materi ini membahas pengenalan konsep dasar pemrograman.</p>
+        </section>
 
-        <!-- Video Opsional -->
-        <div class="video-container">
+        <section class="video-container">
             <h3>Video Pembelajaran</h3>
             <video controls width="600">
                 <source src="assets/videos/module1.mp4" type="video/mp4">
                 Browser Anda tidak mendukung video.
             </video>
-        </div>
+        </section>
 
-        <!-- Quiz -->
-        <div class="quiz-section">
+        <section class="quiz-section">
             <h3>Kuis Modul</h3>
             <a href="quiz.html?module_id=1" class="quiz-link">Kerjakan Kuis</a>
-        </div>
+        </section>
 
-        <!-- Forum -->
-        <div class="forum-section">
+        <section class="forum-section">
             <h3>Forum Diskusi</h3>
             <form action="post_forum.php" method="post">
                 <textarea name="message" rows="4" placeholder="Tulis pesan..."></textarea>
@@ -46,8 +45,8 @@
                 <p><strong>Raja:</strong> Saya kurang paham tentang variabel, bisa bantu?</p>
                 <p><strong>Iwan:</strong> Variabel itu tempat menyimpan nilai. Seperti box yang diberi label!</p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script src="assets/js/script.js"></script>
 </body>

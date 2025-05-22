@@ -1,8 +1,9 @@
 /* Reset default styles */
-body, h1, h2, h3, p, a, ul, li, button {
+body, h1, h2, h3, p, a, ul, li, button, textarea {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -17,7 +18,6 @@ header {
     color: #fff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 nav {
@@ -38,44 +38,47 @@ nav a:hover {
 }
 
 .module-container {
-    max-width: 700px;
+    max-width: 800px;
     margin: 40px auto;
+    padding: 30px;
     background: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
     text-align: left;
 }
 
-.module-container h2 {
-    color: #007bff;
-    margin-bottom: 15px;
-}
-
-.module-content {
-    background: #f9f9f9;
+/* Section umum */
+.module-container section {
+    margin-bottom: 30px;
     padding: 20px;
+    background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-    margin-bottom: 25px;
-    font-size: 1em;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.module-container h2,
+.module-container h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.module-content p {
     color: #555;
+    font-size: 1rem;
 }
 
-.video-container {
-    margin: 20px 0;
-    text-align: center;
-}
-
+/* Video */
 .video-container video {
     max-width: 100%;
     border-radius: 8px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    margin-top: 10px;
 }
 
-.quiz-link, .forum-link {
+/* Kuis link */
+.quiz-link {
     display: inline-block;
-    margin: 10px 15px 0 0;
+    margin-top: 10px;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -85,21 +88,69 @@ nav a:hover {
     transition: background-color 0.3s ease;
 }
 
-.quiz-link:hover, .forum-link:hover {
+.quiz-link:hover {
     background-color: #0056b3;
 }
 
-button.enroll-btn {
+/* Forum */
+.forum-section form {
+    margin-bottom: 20px;
+}
+
+.forum-section textarea {
+    width: 100%;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+.forum-section button {
     padding: 10px 20px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button.enroll-btn:hover {
+.forum-section button:hover {
     background-color: #1e7e34;
+}
+
+.forum-messages {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.forum-messages p {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.video-container h3 {
+    margin-bottom: 10px;
+}
+
+.video-container video {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
