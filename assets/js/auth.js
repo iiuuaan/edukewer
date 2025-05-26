@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorMessage = document.getElementById("error-message");
 
         // Kirim data ke PHP
-        fetch("PHP/login.php", {
+        fetch("../../PHP/login.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
