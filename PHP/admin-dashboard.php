@@ -7,4 +7,4 @@ if ($_SESSION['role'] !== 'admin') {
 ?>
 
 <h1>Selamat datang, <?= $_SESSION['username'] ?> (Admin)</h1>
-<a href="logout.php">Logout</a>
+<a href="PHP/logout.php">Logout</a>

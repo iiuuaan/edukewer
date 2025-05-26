@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("logout").addEventListener("click", function () {
     localStorage.removeItem("role");
-    window.location.href = "index.html";
+    window.location.href = "HTML/index.html";
   });
 });
 
 if (localStorage.getItem("role") !== "admin") {
-    window.location.href = "login.html";
+    window.location.href = "HTML/login.html";
 }

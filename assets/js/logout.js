@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutBtn.addEventListener("click", function () {
             localStorage.removeItem("role");
 
-            fetch("logout.php", {
+            fetch("PHP/logout.php", {
                 method: "POST"
             })
             .then(() => {
-                window.location.href = "login.html";
+                window.location.href = "HTML/login.html";
             })
             .catch(err => {
                 console.error("Logout error:", err);

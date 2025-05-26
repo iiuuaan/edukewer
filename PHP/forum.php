@@ -69,8 +69,8 @@ $conn->close();
 <header>
     <h1>Forum Discussion</h1>
     <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="index.html" id="logout">Logout</a>
+        <a href="HTML/dashboard.html">Dashboard</a>
+        <a href="HTML/index.html" id="logout">Logout</a>
     </nav>
 </header>
 
