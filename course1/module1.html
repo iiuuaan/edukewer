@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module Details - Edukewer</title>
+    <link rel="stylesheet" href="../assets/css/module.css">
+</head>
+<body>
+    <header>
+        <h1>Modul 1: Pengenalan</h1>
+        <nav>
+            <a href="../course1.html">Kembali ke Course</a>
+            <a href="../dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="module-container">
+        <section class="module-content">
+            <h2>Materi</h2>
+            <p>Materi ini membahas pengenalan konsep dasar pemrograman.</p>
+        </section>
+
+        <section class="module-resources">
+            <h2>Referensi</h2>
+            <ul>
+                <li><a href="https://www.w3schools.com">W3Schools</a></li>
+                <li><a href="https://developer.mozilla.org">MDN Web Docs</a></li>
+                <li><a href="https://www.codecademy.com">Codecademy</a></li>
+            </ul>
+        </section>
+
+        <section class="video-container">
+            <h3>Video Pembelajaran</h3>
+            <iframe width="600" height="340"
+                src="https://www.youtube.com/embed/zOjov-2OZ0E"
+                title="Video Pembelajaran"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </section>
+
+        <section class="quiz-section">
+            <h3>Kuis Modul</h3>
+            <a href="quiz.html?module_id=1" class="quiz-link">Kerjakan Kuis</a>
+        </section>
+
+        <section class="forum-section">
+            <h3>Forum Diskusi</h3>
+            <form action="post_forum.php" method="post">
+                <textarea name="message" rows="4" placeholder="Tulis pesan..."></textarea>
+                <input type="hidden" name="module_id" value="1">
+                <button type="submit">Kirim</button>
+            </form>
+
+            <div class="forum-messages">
+                <p><strong>Raja:</strong> Saya kurang paham tentang variabel, bisa bantu?</p>
+                <p><strong>Iwan:</strong> Variabel itu tempat menyimpan nilai. Seperti box yang diberi label!</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

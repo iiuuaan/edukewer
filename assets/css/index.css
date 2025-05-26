@@ -26,10 +26,13 @@ header {
 }
 
 header h1 {
-    font-size: 24px;
-    margin: 0;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
 }
+
 
 .header-right {
     display: flex;
@@ -101,11 +104,32 @@ h2 {
 }
 
 .course-item {
-    background: #eef1f7;
-    padding: 15px;
+    position: relative;
+    padding: 20px;
     border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    color: white;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     transition: transform 0.3s ease;
+}
+
+/* Overlay agar teks tetap terbaca */
+.course-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+/* Posisi teks di atas background */
+.course-item h3,
+.course-item p,
+.course-item a {
+    position: relative;
+    z-index: 1;
 }
 
 .course-item:hover {
@@ -113,12 +137,12 @@ h2 {
 }
 
 .course-item h3 {
-    color: #333;
+    color: #fff;
     margin-bottom: 5px;
 }
 
 .course-item p {
-    color: #555;
+    color: #ddd;
     margin-bottom: 10px;
 }
 
@@ -137,16 +161,90 @@ h2 {
     background: #0056b3;
 }
 
+/* Background gambar berdasarkan kelas */
+.course1 {
+    background-image: url('../images/intro-to-prog.jpg');
+}
+
+.course2 {
+    background-image: url('../images/web-basic.png');
+}
+
+.course3 {
+    background-image: url('../images/data-structures.png');
+}
+
+.course4 {
+    background-image: url('../images/database-fundamentals.jpg');
+}
+
 /* Footer styling */
 footer {
     background-color: #007bff;
     color: white;
     text-align: center;
     padding: 15px 20px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     font-size: 0.9rem;
     box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
     z-index: 100;
+    display: none; /* Sembunyikan di awal */
+}
+
+.welcome {
+    margin: 40px auto 30px;
+    padding: 30px 20px;
+    max-width: 700px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    animation: fadeInUp 0.7s ease-in-out;
+}
+
+/* section welcome */
+.welcome h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.welcome .brand-name {
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.welcome p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* section search */
+.search-bar {
+    margin: 20px auto;
+    padding: 12px 20px;
+    width: 80%;
+    max-width: 500px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: box-shadow 0.3s ease;
+    outline: none;
+}
+
+.search-bar:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    border-color: #0056b3;
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
