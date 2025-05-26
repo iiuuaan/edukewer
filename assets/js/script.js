@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loginForm.addEventListener("submit", function(event) {
             event.preventDefault();
             alert("Login successful!");
-            window.location.href = "HTML/dashboard.html";
+            window.location.href = "dashboard.html";
         });
     }
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         logoutBtn.addEventListener("click", function(event) {
             event.preventDefault();
             alert("Logged out successfully!");
-            window.location.href = "HTML/index.html";
+            window.location.href = "index.html";
         });
     }
 

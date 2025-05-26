@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-Learning Platform</title>
+    <link rel="stylesheet" href="assets/css/index.css" />
 </head>
 <body>
-    <header class="dashboard-header">
-        <div class="header-left">
-            <h1>Dashboard</h1>
-        </div>
+    <header>
+        <h1>Edukewer</h1>
+
         <div class="header-right">
             <nav id="nav-links">
-                <!-- Menu dinamis akan diisi lewat JavaScript -->
+                <!-- Link dinamis akan diisi oleh JavaScript -->
             </nav>
             <div class="user-info" id="user-info" style="display: none;">
                 <span id="username-text">Hallo, [username]!</span>
@@ -21,21 +20,35 @@
         </div>
     </header>
 
-    <section class="dashboard">
-        <h2>My Courses</h2>
+    <section class="courses">
+        <h2>Available Courses</h2>
         <div class="course-list">
             <div class="course-item">
                 <h3>Course 1</h3>
                 <p>Introduction to Programming</p>
-                <a href="HTML/course.html">Go to Course</a>
+                <a href="course1.html">View Course</a>
             </div>
             <div class="course-item">
                 <h3>Course 2</h3>
                 <p>Web Development Basics</p>
-                <button class="enroll-btn" data-course="Course 2">Enroll</button>
+                <a href="course2.html">View Course</a>
+            </div>
+            <div class="course-item">
+                <h3>Course 3</h3>
+                <p>Data Structures and Algorithms Basics</p>
+                <a href="course3.html">View Course</a>
+            </div>
+            <div class="course-item">
+                <h3>Course 4</h3>
+                <p>Database Fundamentals</p>
+                <a href="course4.html">View Course</a>
             </div>
         </div>
     </section>
+
+    <footer>
+        <p>&copy; 2025 Edukewer. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -49,25 +62,19 @@
             if (role === "admin") {
                 navLinks.innerHTML = `
                     <a href="index.html">Home</a>
-                    <span class="divider">|</span>
                     <a href="admin-dashboard.html">Admin Dashboard</a>
-                    <span class="divider">|</span>
                     <a href="#" id="logout">Logout</a>
                 `;
             } else if (role === "user") {
                 navLinks.innerHTML = `
                     <a href="index.html">Home</a>
-                    <span class="divider">|</span>
-                    <a href="dashboard.html">My Courses</a>
-                    <span class="divider">|</span>
+                    <a href="dashboard.html">Dashboard</a>
                     <a href="#" id="logout">Logout</a>
                 `;
             } else {
                 navLinks.innerHTML = `
                     <a href="index.html">Home</a>
-                    <span class="divider">|</span>
                     <a href="login.html">Login</a>
-                    <span class="divider">|</span>
                     <a href="register.html">Register</a>
                 `;
             }
@@ -87,6 +94,5 @@
             }
         });
     </script>
-
 </body>
 </html>

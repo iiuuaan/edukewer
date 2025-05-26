@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "POST"
             })
             .then(() => {
-                window.location.href = "HTML/login.html";
+                window.location.href = "login.html";
             })
             .catch(err => {
                 console.error("Logout error:", err);

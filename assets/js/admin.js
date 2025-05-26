@@ -89,5 +89,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 if (localStorage.getItem("role") !== "admin") {
-    window.location.href = "HTML/login.html";
+    window.location.href = "login.html";
 }

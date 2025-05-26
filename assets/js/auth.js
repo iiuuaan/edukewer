@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem("role", data.role);
 
                 if (data.role === "admin") {
-                    window.location.href = "HTML/admin-dashboard.html";
+                    window.location.href = "admin-dashboard.html";
                 } else {
-                    window.location.href = "HTML/dashboard.html";
+                    window.location.href = "dashboard.html";
                 }
             } else {
                 errorMessage.style.display = "block";
@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Auto-redirect jika sudah login
     const role = localStorage.getItem("role");
     if (role === "admin") {
-        window.location.href = "HTML/admin-dashboard.html";
+        window.location.href = "admin-dashboard.html";
     } else if (role === "user") {
-        window.location.href = "HTML/dashboard.html";
+        window.location.href = "dashboard.html";
     }
 });
 
@@ -53,9 +53,9 @@ if (data.success) {
     localStorage.setItem("username", data.username); // Tambahan ini
 
     if (data.role === "admin") {
-        window.location.href = "HTML/admin-dashboard.html";
+        window.location.href = "admin-dashboard.html";
     } else {
-        window.location.href = "HTML/dashboard.html";
+        window.location.href = "dashboard.html";
     }
 }
 

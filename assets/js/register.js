@@ -19,7 +19,7 @@ document.getElementById("register-form").addEventListener("submit", function(e) 
             msg.style.color = "green";
             msg.textContent = "Registrasi berhasil! Redirect ke login...";
             setTimeout(() => {
-                window.location.href = "HTML/login.html";
+                window.location.href = "login.html";
             }, 1500);
         } else {
             msg.style.color = "red";

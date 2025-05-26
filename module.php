@@ -41,8 +41,8 @@ $resultModules = $conn->query($sqlModules);
 <header>
     <h1>Course: <?php echo htmlspecialchars($course['title']); ?></h1>
     <nav>
-        <a href="HTML/index.html">Home</a>
-        <a href="HTML/dashboard.html">Dashboard</a>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
     </nav>
 </header>
 
