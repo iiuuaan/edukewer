@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("logout").addEventListener("click", function () {
     localStorage.removeItem("role");
-    window.location.href = "HTML/index.html";
+    window.location.href = "index.html";
   });
 });
 

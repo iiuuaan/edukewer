@@ -5,7 +5,7 @@ document.getElementById("register-form").addEventListener("submit", function(e) 
     const password = document.getElementById("password").value;
     const role = document.getElementById("role").value;
 
-    fetch("../../PHP/register.php", {
+    fetch("register.php", {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&role=${encodeURIComponent(role)}`

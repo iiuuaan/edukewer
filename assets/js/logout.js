@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutBtn.addEventListener("click", function () {
             localStorage.removeItem("role");
 
-            fetch("PHP/logout.php", {
+            fetch("logout.php", {
                 method: "POST"
             })
             .then(() => {
