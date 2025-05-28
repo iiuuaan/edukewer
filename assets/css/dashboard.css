@@ -125,3 +125,55 @@ body {
 .enroll-btn:hover {
     background: #0056b3;
 }
+
+.profile-section {
+        margin: 50px auto;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #f4f6f8;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .profile-section h2 {
+        margin-bottom: 20px;
+        color: #007bff;
+        text-align: center;
+    }
+
+    .profile-card p {
+        font-size: 16px;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .profile-card strong {
+        width: 100px;
+        display: inline-block;
+    }
+
+.edit-profile-form {
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.edit-profile-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.edit-profile-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-profile-form button:hover {
+    background-color: #0056b3;
+}
+
