@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/css/quiz.css" />
+    <title>Kuis: Konsep Dasar Database</title>
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Kuis</h1>
+    <nav>
+        <a href="module1.html">Kembali ke modul</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html" id="logout">Logout</a>
+    </nav>
+</header>
+
+<section class="quiz">
+    <h2>Kuis: Konsep Dasar Database</h2>
+    <div class="timer" id="timer">Waktu: 15:00</div>
+    <form id="quiz-form">
+        <div class="question">
+            <p>1. Apa itu database?</p>
+            <label><input type="radio" name="q1" value="a"> Sistem pengolah gambar</label>
+            <label><input type="radio" name="q1" value="b"> Kumpulan data yang terorganisir</label>
+            <label><input type="radio" name="q1" value="c"> Software pengolah video</label>
+        </div>
+
+        <div class="question">
+            <p>2. Apa fungsi utama dari DBMS?</p>
+            <label><input type="radio" name="q2" value="a"> Menyimpan dan mengelola data</label>
+            <label><input type="radio" name="q2" value="b"> Membuat desain grafis</label>
+            <label><input type="radio" name="q2" value="c"> Mengedit video</label>
+        </div>
+
+        <div class="question">
+            <p>3. Apa itu primary key dalam database?</p>
+            <label><input type="radio" name="q3" value="a"> Kolom yang bisa berisi data duplikat</label>
+            <label><input type="radio" name="q3" value="b"> Kolom unik yang menjadi identitas tiap baris</label>
+            <label><input type="radio" name="q3" value="c"> Kolom berisi data yang dihapus</label>
+        </div>
+
+        <div class="question">
+            <p>4. Apa itu foreign key?</p>
+            <label><input type="radio" name="q4" value="a"> Kolom yang merujuk ke primary key tabel lain</label>
+            <label><input type="radio" name="q4" value="b"> Kolom yang menyimpan angka saja</label>
+            <label><input type="radio" name="q4" value="c"> Kolom yang tidak boleh berisi nilai NULL</label>
+        </div>
+
+        <div class="question">
+            <p>5. Apa kepanjangan dari SQL?</p>
+            <label><input type="radio" name="q5" value="a"> Structured Query Language</label>
+            <label><input type="radio" name="q5" value="b"> Simple Query Language</label>
+            <label><input type="radio" name="q5" value="c"> Sequential Query List</label>
+        </div>
+
+        <div class="question">
+            <p>6. Apa itu relasi dalam konteks database relasional?</p>
+            <label><input type="radio" name="q6" value="a"> Hubungan antar tabel</label>
+            <label><input type="radio" name="q6" value="b"> Jenis file database</label>
+            <label><input type="radio" name="q6" value="c"> Tabel yang kosong</label>
+        </div>
+
+        <div class="question">
+            <p>7. Apa tujuan normalisasi database?</p>
+            <label><input type="radio" name="q7" value="a"> Mengurangi redundansi data</label>
+            <label><input type="radio" name="q7" value="b"> Memperbesar ukuran database</label>
+            <label><input type="radio" name="q7" value="c"> Membuat database tidak terstruktur</label>
+        </div>
+
+        <div class="question">
+            <p>8. Apa yang dimaksud dengan query?</p>
+            <label><input type="radio" name="q8" value="a"> Perintah untuk mengambil atau manipulasi data</label>
+            <label><input type="radio" name="q8" value="b"> File backup database</label>
+            <label><input type="radio" name="q8" value="c"> Software untuk desain database</label>
+        </div>
+
+        <div class="question">
+            <p>9. Apa itu atribut dalam tabel database?</p>
+            <label><input type="radio" name="q9" value="a"> Baris data</label>
+            <label><input type="radio" name="q9" value="b"> Kolom atau field</label>
+            <label><input type="radio" name="q9" value="c"> Kunci primer</label>
+        </div>
+
+        <div class="question">
+            <p>10. Apa yang dimaksud dengan schema database?</p>
+            <label><input type="radio" name="q10" value="a"> Struktur keseluruhan database</label>
+            <label><input type="radio" name="q10" value="b"> Data yang tersimpan dalam tabel</label>
+            <label><input type="radio" name="q10" value="c"> Software untuk mengakses data</label>
+        </div>
+
+        <button type="submit">Kumpulkan Kuis</button>
+    </form>
+    <div id="result"></div>
+</section>
+
+<script>
+    const correctAnswers = {
+        q1: "b", q2: "a", q3: "b", q4: "a", q5: "a",
+        q6: "a", q7: "a", q8: "a", q9: "b", q10: "a"
+    };
+
+    let time = 15 * 60;
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+        const min = Math.floor(time / 60);
+        const sec = time % 60;
+        timerEl.textContent = `Waktu: ${min}:${sec < 10 ? '0' : ''}${sec}`;
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+        }
+        time--;
+    }
+    const interval = setInterval(updateTimer, 1000);
+
+    document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        clearInterval(interval);
+
+        let score = 0;
+        let result = "<h3>Review Jawaban:</h3><ol>";
+        for (let i = 1; i <= 10; i++) {
+            const q = `q${i}`;
+            const ans = document.querySelector(`input[name="${q}"]:checked`);
+            const userAns = ans ? ans.value : "none";
+            const isCorrect = userAns === correctAnswers[q];
+            result += `<li>Soal ${i}: ${isCorrect ? "<span class='correct'>Benar</span>" : "<span class='incorrect'>Salah</span>"} (${userAns !== "none" ? userAns : "Tidak dijawab"})</li>`;
+            if (isCorrect) score++;
+        }
+        result += `</ol><p><strong>Skor Anda: ${score}/10</strong></p>`;
+        document.getElementById("result").innerHTML = result;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis - Struktur Kontrol</title>
+    <link rel="stylesheet" href="../assets/css/quiz.css">
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kuis</h1>
+        <nav>
+            <a href="module3.html">Kembali ke modul</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="quiz">
+        <h2>Kuis: Struktur Kontrol (Percabangan & Perulangan)</h2>
+        <div class="timer" id="timer">Waktu: 15:00</div>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. Apa tujuan dari struktur percabangan dalam program?</p>
+                <label><input type="radio" name="q1" value="a"> Mengulang baris kode berkali-kali</label><br>
+                <label><input type="radio" name="q1" value="b"> Menyimpan nilai dalam variabel</label><br>
+                <label><input type="radio" name="q1" value="c"> Menjalankan perintah berdasarkan kondisi tertentu</label>
+            </div>
+
+            <div class="question">
+                <p>2. Struktur "jika - maka" termasuk dalam kategori...</p>
+                <label><input type="radio" name="q2" value="a"> Perulangan</label><br>
+                <label><input type="radio" name="q2" value="b"> Percabangan</label><br>
+                <label><input type="radio" name="q2" value="c"> Fungsi</label>
+            </div>
+
+            <div class="question">
+                <p>3. Dalam percabangan, jika kondisi bernilai salah (false), maka...</p>
+                <label><input type="radio" name="q3" value="a"> Semua perintah akan tetap dijalankan</label><br>
+                <label><input type="radio" name="q3" value="b"> Program akan berhenti</label><br>
+                <label><input type="radio" name="q3" value="c"> Perintah dalam blok tersebut tidak dijalankan</label>
+            </div>
+
+            <div class="question">
+                <p>4. Struktur perulangan digunakan untuk...</p>
+                <label><input type="radio" name="q4" value="a"> Menyimpan data</label><br>
+                <label><input type="radio" name="q4" value="b"> Mengevaluasi ekspresi logika</label><br>
+                <label><input type="radio" name="q4" value="c"> Menjalankan kode berulang kali</label>
+            </div>
+
+            <div class="question">
+                <p>5. Perulangan yang terus berjalan tanpa henti disebut...</p>
+                <label><input type="radio" name="q5" value="a"> Perulangan logika</label><br>
+                <label><input type="radio" name="q5" value="b"> Perulangan normal</label><br>
+                <label><input type="radio" name="q5" value="c"> Perulangan tak hingga</label>
+            </div>
+
+            <div class="question">
+                <p>6. Apa yang harus dimiliki oleh perulangan agar bisa berhenti?</p>
+                <label><input type="radio" name="q6" value="a"> Fungsi cetak</label><br>
+                <label><input type="radio" name="q6" value="b"> Syarat berhenti (kondisi)</label><br>
+                <label><input type="radio" name="q6" value="c"> Variabel teks</label>
+            </div>
+
+            <div class="question">
+                <p>7. Manakah contoh situasi yang cocok menggunakan perulangan?</p>
+                <label><input type="radio" name="q7" value="a"> Menampilkan "Selamat datang" 100 kali</label><br>
+                <label><input type="radio" name="q7" value="b"> Memilih satu dari dua pilihan</label><br>
+                <label><input type="radio" name="q7" value="c"> Menyimpan data nama pengguna</label>
+            </div>
+
+            <div class="question">
+                <p>8. Struktur kontrol mana yang cocok untuk memilih satu dari banyak pilihan?</p>
+                <label><input type="radio" name="q8" value="a"> Perulangan tak terbatas</label><br>
+                <label><input type="radio" name="q8" value="b"> Percabangan bertingkat</label><br>
+                <label><input type="radio" name="q8" value="c"> Fungsi perhitungan</label>
+            </div>
+
+            <div class="question">
+                <p>9. Mengapa penting menggunakan perulangan dibanding menulis kode berulang?</p>
+                <label><input type="radio" name="q9" value="a"> Karena lebih rumit</label><br>
+                <label><input type="radio" name="q9" value="b"> Karena mempercepat pengetikan</label><br>
+                <label><input type="radio" name="q9" value="c"> Karena membuat kode lebih efisien dan rapi</label>
+            </div>
+
+            <div class="question">
+                <p>10. Apa akibat jika syarat berhenti pada perulangan tidak pernah terpenuhi?</p>
+                <label><input type="radio" name="q10" value="a"> Program akan selesai lebih cepat</label><br>
+                <label><input type="radio" name="q10" value="b"> Program akan berhenti otomatis</label><br>
+                <label><input type="radio" name="q10" value="c"> Program bisa macet atau tidak berhenti</label>
+            </div>
+
+            <button type="submit">Submit Kuis</button>
+        </form>
+
+        <div id="result"></div>
+    </section>
+
+    <script>
+        const timerElement = document.getElementById("timer");
+        let time = 15 * 60;
+
+        function updateTimer() {
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            timerElement.textContent = `Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (time <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+            } else {
+                time--;
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+
+        const correctAnswers = {
+            q1: 'c',
+            q2: 'b',
+            q3: 'c',
+            q4: 'c',
+            q5: 'c',
+            q6: 'b',
+            q7: 'a',
+            q8: 'b',
+            q9: 'c',
+            q10: 'c'
+        };
+
+        document.getElementById("quiz-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            clearInterval(timerInterval);
+
+            let score = 0;
+            let resultHTML = "<h3>Review Jawaban:</h3><ol>";
+            for (let i = 1; i <= 10; i++) {
+                const qName = "q" + i;
+                const answer = document.querySelector(`input[name="${qName}"]:checked`);
+                const userAnswer = answer ? answer.value : "none";
+                const isCorrect = userAnswer === correctAnswers[qName];
+                resultHTML += `<li>Soal ${i}: ${isCorrect ? "<span class='correct'>Benar</span>" : "<span class='incorrect'>Salah</span>"} (${userAnswer || "Tidak dijawab"})</li>`;
+                if (isCorrect) score++;
+            }
+            resultHTML += `</ol><p>Skor Anda: ${score} / 10</p>`;
+            document.getElementById("result").innerHTML = resultHTML;
+        });
+    </script>
+</body>
+</html>

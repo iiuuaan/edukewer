@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Kuis: Dasar CSS</title>
+    <link rel="stylesheet" href="../assets/css/quiz.css" />
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quiz</h1>
+        <nav>
+            <a href="module2.html">Kembali ke modul</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="quiz">
+        <h2>Kuis: Dasar CSS</h2>
+        <div class="timer" id="timer">Waktu: 15:00</div>
+        <form id="quiz-form">
+        <div class="question">
+            <p>1. Apa kepanjangan dari CSS?</p>
+            <label><input type="radio" name="q1" value="a"> Computer Style Sheets</label>
+            <label><input type="radio" name="q1" value="b"> Creative Style Sheets</label>
+            <label><input type="radio" name="q1" value="c"> Cascading Style Sheets</label>
+        </div>
+
+        <div class="question">
+            <p>2. Bagaimana cara menambahkan CSS eksternal ke HTML?</p>
+            <label><input type="radio" name="q2" value="a">&lt;link rel="stylesheet" href="style.css"&gt;</label>
+            <label><input type="radio" name="q2" value="b">&lt;style src="style.css"&gt;</label>
+            <label><input type="radio" name="q2" value="c">&lt;css href="style.css"&gt;</label>
+        </div>
+
+        <div class="question">
+            <p>3. Selector CSS mana yang digunakan untuk memilih elemen berdasarkan ID?</p>
+            <label><input type="radio" name="q3" value="a"> .id</label>
+            <label><input type="radio" name="q3" value="b"> #id</label>
+            <label><input type="radio" name="q3" value="c"> id()</label>
+        </div>
+
+        <div class="question">
+            <p>4. Bagaimana Anda memberi warna latar belakang pada elemen HTML?</p>
+            <label><input type="radio" name="q4" value="a"> color-background</label>
+            <label><input type="radio" name="q4" value="b"> background-color</label>
+            <label><input type="radio" name="q4" value="c"> bg-color</label>
+        </div>
+
+        <div class="question">
+            <p>5. Apa nilai default dari posisi elemen HTML?</p>
+            <label><input type="radio" name="q5" value="a"> relative</label>
+            <label><input type="radio" name="q5" value="b"> absolute</label>
+            <label><input type="radio" name="q5" value="c"> static</label>
+        </div>
+
+        <div class="question">
+            <p>6. Bagaimana cara membuat teks menjadi tebal di CSS?</p>
+            <label><input type="radio" name="q6" value="a"> font-weight: bold;</label>
+            <label><input type="radio" name="q6" value="b"> font-bold: true;</label>
+            <label><input type="radio" name="q6" value="c"> text-style: bold;</label>
+        </div>
+
+        <div class="question">
+            <p>7. Apa fungsi dari properti <code>z-index</code>?</p>
+            <label><input type="radio" name="q7" value="a"> Menentukan warna elemen</label>
+            <label><input type="radio" name="q7" value="b"> Mengatur urutan tumpukan elemen</label>
+            <label><input type="radio" name="q7" value="c"> Mengatur ukuran font</label>
+        </div>
+
+        <div class="question">
+            <p>8. Bagaimana cara memilih semua elemen <code>&lt;p&gt;</code> dalam CSS?</p>
+            <label><input type="radio" name="q8" value="a"> p { }</label>
+            <label><input type="radio" name="q8" value="b"> .p { }</label>
+            <label><input type="radio" name="q8" value="c"> #p { }</label>
+        </div>
+
+        <div class="question">
+            <p>9. Properti CSS mana yang digunakan untuk mengubah ukuran teks?</p>
+            <label><input type="radio" name="q9" value="a"> text-size</label>
+            <label><input type="radio" name="q9" value="b"> font-size</label>
+            <label><input type="radio" name="q9" value="c"> size</label>
+        </div>
+
+        <div class="question">
+            <p>10. Bagaimana Anda membuat elemen berada di tengah secara horizontal?</p>
+            <label><input type="radio" name="q10" value="a"> margin: center;</label>
+            <label><input type="radio" name="q10" value="b"> text-align: center;</label>
+            <label><input type="radio" name="q10" value="c"> margin: 0 auto;</label>
+        </div>
+
+        <button type="submit">Kumpulkan Kuis</button>
+        </form>
+        <div id="result"></div>
+    </section>
+
+    <script>
+        const correctAnswers = {
+        q1: "c", q2: "a", q3: "b", q4: "b", q5: "c",
+        q6: "a", q7: "b", q8: "a", q9: "b", q10: "c"
+        };
+
+        let time = 15 * 60;
+        const timerEl = document.getElementById("timer");
+
+        function updateTimer() {
+        const min = Math.floor(time / 60);
+        const sec = time % 60;
+        timerEl.textContent = `Waktu: ${min}:${sec < 10 ? '0' : ''}${sec}`;
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+        }
+        time--;
+        }
+        const interval = setInterval(updateTimer, 1000);
+
+        document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        clearInterval(interval);
+
+        let score = 0;
+        let result = "<h3>Review Jawaban:</h3><ol>";
+        for (let i = 1; i <= 10; i++) {
+            const q = `q${i}`;
+            const ans = document.querySelector(`input[name="${q}"]:checked`);
+            const userAns = ans ? ans.value : "none";
+            const isCorrect = userAns === correctAnswers[q];
+            result += `<li>Soal ${i}: ${isCorrect ? "<span class='correct'>Benar</span>" : "<span class='incorrect'>Salah</span>"} (${userAns || "Tidak dijawab"})</li>`;
+            if (isCorrect) score++;
+        }
+        result += `</ol><p><strong>Skor Anda: ${score}/10</strong></p>`;
+        document.getElementById("result").innerHTML = result;
+        });
+    </script>
+</body>
+</html>

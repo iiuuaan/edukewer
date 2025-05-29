@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Konsep Dasar Pemrograman</title>
+    <link rel="stylesheet" href="../assets/css/quiz.css">
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quiz</h1>
+        <nav>
+            <a href="module2.html">Kembali ke modul</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <section class="quiz">
+        <h2>Kuis: Dasar JavaScript</h2>
+        <div class="timer" id="timer">Waktu: 15:00</div>
+        <form id="quiz-form">
+        <div class="question">
+            <p>1. Apa tipe data dari nilai <code>true</code> dalam JavaScript?</p>
+            <label><input type="radio" name="q1" value="a"> String</label>
+            <label><input type="radio" name="q1" value="b"> Boolean</label>
+            <label><input type="radio" name="q1" value="c"> Number</label>
+        </div>
+
+        <div class="question">
+            <p>2. Bagaimana cara mendeklarasikan variabel di JavaScript yang nilainya bisa diubah?</p>
+            <label><input type="radio" name="q2" value="a"> const nama;</label>
+            <label><input type="radio" name="q2" value="b"> let nama;</label>
+            <label><input type="radio" name="q2" value="c"> fixed nama;</label>
+        </div>
+
+        <div class="question">
+            <p>3. Fungsi mana yang digunakan untuk menampilkan pesan di kotak alert?</p>
+            <label><input type="radio" name="q3" value="a"> alertBox()</label>
+            <label><input type="radio" name="q3" value="b"> alert()</label>
+            <label><input type="radio" name="q3" value="c"> prompt()</label>
+        </div>
+
+        <div class="question">
+            <p>4. Apa hasil dari <code>typeof 42</code>?</p>
+            <label><input type="radio" name="q4" value="a"> "number"</label>
+            <label><input type="radio" name="q4" value="b"> "string"</label>
+            <label><input type="radio" name="q4" value="c"> "object"</label>
+        </div>
+
+        <div class="question">
+            <p>5. Bagaimana membuat fungsi di JavaScript?</p>
+            <label><input type="radio" name="q5" value="a"> function myFunc() { }</label>
+            <label><input type="radio" name="q5" value="b"> func myFunc() { }</label>
+            <label><input type="radio" name="q5" value="c"> def myFunc() { }</label>
+        </div>
+
+        <div class="question">
+            <p>6. Bagaimana menulis komentar satu baris di JavaScript?</p>
+            <label><input type="radio" name="q6" value="a"> <!-- komentar --></label>
+            <label><input type="radio" name="q6" value="b"> // komentar</label>
+            <label><input type="radio" name="q6" value="c"> # komentar</label>
+        </div>
+
+        <div class="question">
+            <p>7. Apa hasil dari <code>5 + "5"</code> di JavaScript?</p>
+            <label><input type="radio" name="q7" value="a"> 10</label>
+            <label><input type="radio" name="q7" value="b"> "55"</label>
+            <label><input type="radio" name="q7" value="c"> Error</label>
+        </div>
+
+        <div class="question">
+            <p>8. Bagaimana cara menambahkan elemen ke akhir array <code>arr</code>?</p>
+            <label><input type="radio" name="q8" value="a"> arr.push(element)</label>
+            <label><input type="radio" name="q8" value="b"> arr.add(element)</label>
+            <label><input type="radio" name="q8" value="c"> arr.insert(element)</label>
+        </div>
+
+        <div class="question">
+            <p>9. Mana operator perbandingan yang membandingkan nilai tanpa tipe data?</p>
+            <label><input type="radio" name="q9" value="a"> ===</label>
+            <label><input type="radio" name="q9" value="b"> ==</label>
+            <label><input type="radio" name="q9" value="c"> !=</label>
+        </div>
+
+        <div class="question">
+            <p>10. Apa output dari <code>console.log(typeof null)</code>?</p>
+            <label><input type="radio" name="q10" value="a"> "null"</label>
+            <label><input type="radio" name="q10" value="b"> "object"</label>
+            <label><input type="radio" name="q10" value="c"> "undefined"</label>
+        </div>
+
+        <button type="submit">Kumpulkan Kuis</button>
+        </form>
+        <div id="result"></div>
+    </section>
+
+    <script>
+        const correctAnswers = {
+        q1: "b",
+        q2: "b",
+        q3: "b",
+        q4: "a",
+        q5: "a",
+        q6: "b",
+        q7: "b",
+        q8: "a",
+        q9: "b",
+        q10: "b"
+        };
+
+        let time = 15 * 60; // 15 minutes
+        const timerEl = document.getElementById("timer");
+
+        function updateTimer() {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        timerEl.textContent = `Waktu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+        }
+        time--;
+        }
+        const interval = setInterval(updateTimer, 1000);
+
+        document.getElementById("quiz-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        clearInterval(interval);
+
+        let score = 0;
+        let resultHTML = "<h3>Review Jawaban:</h3><ol>";
+        for(let i = 1; i <= 10; i++) {
+            const qName = "q" + i;
+            const selected = document.querySelector(`input[name="${qName}"]:checked`);
+            const userAnswer = selected ? selected.value : "tidak dijawab";
+            const isCorrect = userAnswer === correctAnswers[qName];
+            if(isCorrect) score++;
+            resultHTML += `<li>Soal ${i}: ${isCorrect ? '<span class="correct">Benar</span>' : '<span class="incorrect">Salah</span>'} (Jawaban Anda: ${userAnswer})</li>`;
+        }
+        resultHTML += `</ol><p><strong>Skor Anda: ${score}/10</strong></p>`;
+        document.getElementById("result").innerHTML = resultHTML;
+        window.scrollTo(0,document.body.scrollHeight);
+        });
+    </script>
+</body>
+</html>

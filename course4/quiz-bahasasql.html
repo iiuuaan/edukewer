@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kuis: Bahasa dalam SQL</title>
+    <link rel="stylesheet" href="../assets/css/quiz.css" />
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Kuis</h1>
+    <nav>
+        <a href="module2.html">Kembali ke modul</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html" id="logout">Logout</a>
+    </nav>
+</header>
+
+<section class="quiz">
+    <h2>Kuis: Bahasa dalam SQL</h2>
+    <div class="timer" id="timer">Waktu: 15:00</div>
+    <form id="quiz-form">
+        <div class="question">
+            <p>1. Perintah SQL untuk mengambil data dari tabel adalah?</p>
+            <label><input type="radio" name="q1" value="a"> INSERT</label>
+            <label><input type="radio" name="q1" value="b"> SELECT</label>
+            <label><input type="radio" name="q1" value="c"> UPDATE</label>
+        </div>
+
+        <div class="question">
+            <p>2. Perintah SQL untuk menambah data ke tabel?</p>
+            <label><input type="radio" name="q2" value="a"> DELETE</label>
+            <label><input type="radio" name="q2" value="b"> INSERT INTO</label>
+            <label><input type="radio" name="q2" value="c"> CREATE</label>
+        </div>
+
+        <div class="question">
+            <p>3. Bagaimana cara menghapus seluruh data dalam tabel tapi tidak menghapus tabel itu sendiri?</p>
+            <label><input type="radio" name="q3" value="a"> DROP TABLE</label>
+            <label><input type="radio" name="q3" value="b"> DELETE FROM</label>
+            <label><input type="radio" name="q3" value="c"> TRUNCATE TABLE</label>
+        </div>
+
+        <div class="question">
+            <p>4. Perintah SQL untuk mengubah data yang sudah ada?</p>
+            <label><input type="radio" name="q4" value="a"> UPDATE</label>
+            <label><input type="radio" name="q4" value="b"> INSERT</label>
+            <label><input type="radio" name="q4" value="c"> ALTER</label>
+        </div>
+
+        <div class="question">
+            <p>5. Bagian mana dari perintah SELECT yang digunakan untuk menyaring data?</p>
+            <label><input type="radio" name="q5" value="a"> WHERE</label>
+            <label><input type="radio" name="q5" value="b"> FROM</label>
+            <label><input type="radio" name="q5" value="c"> ORDER BY</label>
+        </div>
+
+        <div class="question">
+            <p>6. Apa fungsi dari perintah CREATE TABLE?</p>
+            <label><input type="radio" name="q6" value="a"> Membuat tabel baru di database</label>
+            <label><input type="radio" name="q6" value="b"> Menghapus tabel</label>
+            <label><input type="radio" name="q6" value="c"> Menambahkan data ke tabel</label>
+        </div>
+
+        <div class="question">
+            <p>7. Apa arti dari perintah SQL JOIN?</p>
+            <label><input type="radio" name="q7" value="a"> Menggabungkan baris dari dua atau lebih tabel berdasarkan kolom terkait</label>
+            <label><input type="radio" name="q7" value="b"> Menghapus data duplikat</label>
+            <label><input type="radio" name="q7" value="c"> Memilih data secara acak</label>
+        </div>
+
+        <div class="question">
+            <p>8. Perintah SQL untuk mengurutkan hasil query?</p>
+            <label><input type="radio" name="q8" value="a"> ORDER BY</label>
+            <label><input type="radio" name="q8" value="b"> GROUP BY</label>
+            <label><input type="radio" name="q8" value="c"> HAVING</label>
+        </div>
+
+        <div class="question">
+            <p>9. Bagian mana dari SQL yang digunakan untuk mengelompokkan data?</p>
+            <label><input type="radio" name="q9" value="a"> GROUP BY</label>
+            <label><input type="radio" name="q9" value="b"> WHERE</label>
+            <label><input type="radio" name="q9" value="c"> ORDER BY</label>
+        </div>
+
+        <div class="question">
+            <p>10. Fungsi dari perintah DELETE dalam SQL adalah?</p>
+            <label><input type="radio" name="q10" value="a"> Menghapus tabel</label>
+            <label><input type="radio" name="q10" value="b"> Menghapus baris data tertentu</label>
+            <label><input type="radio" name="q10" value="c"> Menambahkan data baru</label>
+        </div>
+
+        <button type="submit">Kumpulkan Kuis</button>
+    </form>
+    <div id="result"></div>
+</section>
+
+<script>
+    const correctAnswers = {
+        q1: "b", q2: "b", q3: "c", q4: "a", q5: "a",
+        q6: "a", q7: "a", q8: "a", q9: "a", q10: "b"
+    };
+
+    let time = 15 * 60;
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+        const min = Math.floor(time / 60);
+        const sec = time % 60;
+        timerEl.textContent = `Waktu: ${min}:${sec < 10 ? '0' : ''}${sec}`;
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+        }
+        time--;
+    }
+    const interval = setInterval(updateTimer, 1000);
+
+    document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        clearInterval(interval);
+
+        let score = 0;
+        let result = "<h3>Review Jawaban:</h3><ol>";
+        for (let i = 1; i <= 10; i++) {
+            const q = `q${i}`;
+            const ans = document.querySelector(`input[name="${q}"]:checked`);
+            const userAns = ans ? ans.value : "none";
+            const isCorrect = userAns === correctAnswers[q];
+            result += `<li>Soal ${i}: ${isCorrect ? "<span class='correct'>Benar</span>" : "<span class='incorrect'>Salah</span>"} (${userAns !== "none" ? userAns : "Tidak dijawab"})</li>`;
+            if (isCorrect) score++;
+        }
+        result += `</ol><p><strong>Skor Anda: ${score}/10</strong></p>`;
+        document.getElementById("result").innerHTML = result;
+    });
+</script>
+</body>
+</html>

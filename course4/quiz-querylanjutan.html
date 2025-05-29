@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kuis: Query Lanjutan SQL</title>
+    <link rel="stylesheet" href="../assets/css/quiz.css" />
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Kuis</h1>
+    <nav>
+        <a href="module3.html">Kembali ke modul</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html" id="logout">Logout</a>
+    </nav>
+</header>
+
+<section class="quiz">
+    <h2>Kuis: Query Lanjutan SQL</h2>
+    <div class="timer" id="timer">Waktu: 15:00</div>
+    <form id="quiz-form">
+        <div class="question">
+            <p>1. Bagaimana cara mengambil data dari dua tabel yang memiliki hubungan berdasarkan kolom yang sama?</p>
+            <label><input type="radio" name="q1" value="a"> UNION</label>
+            <label><input type="radio" name="q1" value="b"> JOIN</label>
+            <label><input type="radio" name="q1" value="c"> WHERE</label>
+        </div>
+
+        <div class="question">
+            <p>2. Manakah jenis JOIN yang mengembalikan semua baris dari tabel kiri dan baris yang cocok dari tabel kanan?</p>
+            <label><input type="radio" name="q2" value="a"> INNER JOIN</label>
+            <label><input type="radio" name="q2" value="b"> LEFT JOIN</label>
+            <label><input type="radio" name="q2" value="c"> RIGHT JOIN</label>
+        </div>
+
+        <div class="question">
+            <p>3. Perintah SQL manakah yang digunakan untuk menghapus duplikat hasil query?</p>
+            <label><input type="radio" name="q3" value="a"> DISTINCT</label>
+            <label><input type="radio" name="q3" value="b"> UNIQUE</label>
+            <label><input type="radio" name="q3" value="c"> DELETE DUPLICATE</label>
+        </div>
+
+        <div class="question">
+            <p>4. Fungsi agregasi SQL yang digunakan untuk menghitung jumlah baris adalah?</p>
+            <label><input type="radio" name="q4" value="a"> COUNT()</label>
+            <label><input type="radio" name="q4" value="b"> SUM()</label>
+            <label><input type="radio" name="q4" value="c"> AVG()</label>
+        </div>
+
+        <div class="question">
+            <p>5. Bagaimana cara menampilkan 5 baris teratas dari tabel 'produk' berdasarkan kolom 'harga' secara menurun?</p>
+            <label><input type="radio" name="q5" value="a"> SELECT * FROM produk ORDER BY harga ASC LIMIT 5;</label>
+            <label><input type="radio" name="q5" value="b"> SELECT * FROM produk ORDER BY harga DESC LIMIT 5;</label>
+            <label><input type="radio" name="q5" value="c"> SELECT TOP 5 * FROM produk ORDER BY harga DESC;</label>
+        </div>
+
+        <div class="question">
+            <p>6. Perintah SQL apa yang digunakan untuk menggabungkan hasil dari dua query yang memiliki struktur kolom sama?</p>
+            <label><input type="radio" name="q6" value="a"> JOIN</label>
+            <label><input type="radio" name="q6" value="b"> UNION</label>
+            <label><input type="radio" name="q6" value="c"> MERGE</label>
+        </div>
+
+        <div class="question">
+            <p>7. Manakah dari perintah berikut yang digunakan untuk membuat alias pada nama kolom dalam query?</p>
+            <label><input type="radio" name="q7" value="a"> AS</label>
+            <label><input type="radio" name="q7" value="b"> ALIAS</label>
+            <label><input type="radio" name="q7" value="c"> RENAME</label>
+        </div>
+
+        <div class="question">
+            <p>8. Bagaimana cara menampilkan data dari tabel 'pelanggan' yang memiliki nilai 'kota' sama dengan 'Jakarta' dan umur lebih dari 25?</p>
+            <label><input type="radio" name="q8" value="a"> SELECT * FROM pelanggan WHERE kota='Jakarta' OR umur>25;</label>
+            <label><input type="radio" name="q8" value="b"> SELECT * FROM pelanggan WHERE kota='Jakarta' AND umur>25;</label>
+            <label><input type="radio" name="q8" value="c"> SELECT * FROM pelanggan HAVING kota='Jakarta' AND umur>25;</label>
+        </div>
+
+        <div class="question">
+            <p>9. Fungsi SQL mana yang digunakan untuk mengambil nilai maksimum dari sebuah kolom?</p>
+            <label><input type="radio" name="q9" value="a"> MAX()</label>
+            <label><input type="radio" name="q9" value="b"> MIN()</label>
+            <label><input type="radio" name="q9" value="c"> TOP()</label>
+        </div>
+
+        <div class="question">
+            <p>10. Perintah manakah yang digunakan untuk mengelompokkan hasil query berdasarkan satu atau lebih kolom?</p>
+            <label><input type="radio" name="q10" value="a"> GROUP BY</label>
+            <label><input type="radio" name="q10" value="b"> ORDER BY</label>
+            <label><input type="radio" name="q10" value="c"> HAVING</label>
+        </div>
+
+        <button type="submit">Kumpulkan Kuis</button>
+    </form>
+    <div id="result"></div>
+</section>
+
+<script>
+    const correctAnswers = {
+        q1: "b",
+        q2: "b",
+        q3: "a",
+        q4: "a",
+        q5: "b",
+        q6: "b",
+        q7: "a",
+        q8: "b",
+        q9: "a",
+        q10: "a"
+    };
+
+    let time = 15 * 60;
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+        const min = Math.floor(time / 60);
+        const sec = time % 60;
+        timerEl.textContent = `Waktu: ${min}:${sec < 10 ? "0" : ""}${sec}`;
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+        }
+        time--;
+    }
+    const interval = setInterval(updateTimer, 1000);
+
+    document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        clearInterval(interval);
+
+        let score = 0;
+        let result = "<h3>Review Jawaban:</h3><ol>";
+        for (let i = 1; i <= 10; i++) {
+            const q = `q${i}`;
+            const ans = document.querySelector(`input[name="${q}"]:checked`);
+            const userAns = ans ? ans.value : "none";
+            const isCorrect = userAns === correctAnswers[q];
+            result += `<li>Soal ${i}: ${isCorrect ? "<span class='correct'>Benar</span>" : "<span class='incorrect'>Salah</span>"} (${userAns !== "none" ? userAns : "Tidak dijawab"})</li>`;
+            if (isCorrect) score++;
+        }
+        result += `</ol><p><strong>Skor Anda: ${score}/10</strong></p>`;
+        document.getElementById("result").innerHTML = result;
+    });
+</script>
+</body>
+</html>

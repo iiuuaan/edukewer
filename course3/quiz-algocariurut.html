@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kuis: Algoritma Pencarian dan Pengurutan</title>
+    <link rel="stylesheet" href="../assets/css/quiz.css" />
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .timer { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Quiz</h1>
+    <nav>
+            <a href="module2.html">Kembali ke modul</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" id="logout">Logout</a>
+    </nav>
+</header>
+
+<section class="quiz">
+    <h2>Kuis: Algoritma Pencarian dan Pengurutan</h2>
+    <div class="timer" id="timer">Waktu: 15:00</div>
+    <form id="quiz-form">
+        <div class="question">
+            <p>1. Algoritma pencarian yang membandingkan secara berurutan dari elemen pertama sampai ditemukan adalah?</p>
+            <label><input type="radio" name="q1" value="a"> Binary Search</label>
+            <label><input type="radio" name="q1" value="b"> Linear Search</label>
+            <label><input type="radio" name="q1" value="c"> Hash Search</label>
+        </div>
+
+        <div class="question">
+            <p>2. Algoritma pengurutan yang membandingkan elemen berdekatan dan menukarnya jika urutan salah disebut?</p>
+            <label><input type="radio" name="q2" value="a"> Bubble Sort</label>
+            <label><input type="radio" name="q2" value="b"> Quick Sort</label>
+            <label><input type="radio" name="q2" value="c"> Merge Sort</label>
+        </div>
+
+        <div class="question">
+            <p>3. Algoritma pencarian yang hanya dapat digunakan pada data yang sudah terurut adalah?</p>
+            <label><input type="radio" name="q3" value="a"> Linear Search</label>
+            <label><input type="radio" name="q3" value="b"> Binary Search</label>
+            <label><input type="radio" name="q3" value="c"> Hash Search</label>
+        </div>
+
+        <div class="question">
+            <p>4. Algoritma pengurutan yang menggunakan prinsip divide and conquer adalah?</p>
+            <label><input type="radio" name="q4" value="a"> Bubble Sort</label>
+            <label><input type="radio" name="q4" value="b"> Merge Sort</label>
+            <label><input type="radio" name="q4" value="c"> Insertion Sort</label>
+        </div>
+
+        <div class="question">
+            <p>5. Dalam Binary Search, data harus dalam keadaan?</p>
+            <label><input type="radio" name="q5" value="a"> Terurut</label>
+            <label><input type="radio" name="q5" value="b"> Acak</label>
+            <label><input type="radio" name="q5" value="c"> Berpasangan</label>
+        </div>
+
+        <div class="question">
+            <p>6. Algoritma pengurutan mana yang memiliki kompleksitas waktu terbaik rata-rata di antara yang berikut?</p>
+            <label><input type="radio" name="q6" value="a"> Bubble Sort</label>
+            <label><input type="radio" name="q6" value="b"> Quick Sort</label>
+            <label><input type="radio" name="q6" value="c"> Selection Sort</label>
+        </div>
+
+        <div class="question">
+            <p>7. Apa karakteristik utama dari Linear Search?</p>
+            <label><input type="radio" name="q7" value="a"> Memerlukan data terurut</label>
+            <label><input type="radio" name="q7" value="b"> Memeriksa setiap elemen satu per satu</label>
+            <label><input type="radio" name="q7" value="c"> Menggunakan hashing</label>
+        </div>
+
+        <div class="question">
+            <p>8. Algoritma pengurutan mana yang memindahkan elemen terkecil ke posisi awal secara bertahap?</p>
+            <label><input type="radio" name="q8" value="a"> Selection Sort</label>
+            <label><input type="radio" name="q8" value="b"> Bubble Sort</label>
+            <label><input type="radio" name="q8" value="c"> Merge Sort</label>
+        </div>
+
+        <div class="question">
+            <p>9. Algoritma pengurutan apa yang menggunakan teknik pembagian data menjadi sublist kemudian digabungkan?</p>
+            <label><input type="radio" name="q9" value="a"> Quick Sort</label>
+            <label><input type="radio" name="q9" value="b"> Merge Sort</label>
+            <label><input type="radio" name="q9" value="c"> Bubble Sort</label>
+        </div>
+
+        <div class="question">
+            <p>10. Dalam konteks algoritma, apa arti istilah "divide and conquer"?</p>
+            <label><input type="radio" name="q10" value="a"> Membagi masalah menjadi bagian lebih kecil lalu selesaikan secara terpisah</label>
+            <label><input type="radio" name="q10" value="b"> Mencari elemen secara linear</label>
+            <label><input type="radio" name="q10" value="c"> Menggabungkan data secara acak</label>
+        </div>
+
+        <button type="submit">Kumpulkan Kuis</button>
+    </form>
+    <div id="result"></div>
+</section>
+
+<script>
+    const correctAnswers = {
+        q1: "b", q2: "a", q3: "b", q4: "b", q5: "a",
+        q6: "b", q7: "b", q8: "a", q9: "b", q10: "a"
+    };
+
+    let time = 15 * 60;
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+        const min = Math.floor(time / 60);
+        const sec = time % 60;
+        timerEl.textContent = `Waktu: ${min}:${sec < 10 ? '0' : ''}${sec}`;
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
+        }
+        time--;
+    }
+    const interval = setInterval(updateTimer, 1000);
+
+    document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        clearInterval(interval);
+
+        let score = 0;
+        let result = "<h3>Review Jawaban:</h3><ol>";
+        for (let i = 1; i <= 10; i++) {
+            const q = `q${i}`;
+            const ans = document.querySelector(`input[name="${q}"]:checked`);
+            const userAns = ans ? ans.value : "none";
+            const isCorrect = userAns === correctAnswers[q];
+            result += `<li>Soal ${i}: ${isCorrect ? "<span class='correct'>Benar</span>" : "<span class='incorrect'>Salah</span>"} (${userAns !== "none" ? userAns : "Tidak dijawab"})</li>`;
+            if (isCorrect) score++;
+        }
+        result += `</ol><p><strong>Skor Anda: ${score}/10</strong></p>`;
+        document.getElementById("result").innerHTML = result;
+    });
+</script>
+</body>
+</html>
